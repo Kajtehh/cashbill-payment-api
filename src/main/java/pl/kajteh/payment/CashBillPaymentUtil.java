@@ -1,9 +1,9 @@
-package pl.kajteh.api;
+package pl.kajteh.payment;
 
 import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 import org.apache.commons.codec.digest.DigestUtils;
-import pl.kajteh.api.data.CashBillPersonalData;
+import pl.kajteh.payment.data.CashBillPersonalData;
 
 import java.util.Map;
 
@@ -14,8 +14,8 @@ public class CashBillPaymentUtil {
         StringBuilder sb = new StringBuilder();
 
         appendNonNull(sb, payment.getTitle());
-        appendNonNull(sb, payment.getAmount().getValue());
-        appendNonNull(sb, payment.getAmount().getCurrencyCode());
+        appendNonNull(sb, payment.getAmount().value());
+        appendNonNull(sb, payment.getAmount().currencyCode());
         appendNonNull(sb, payment.getReturnUrl());
         appendNonNull(sb, payment.getDescription());
         appendNonNull(sb, payment.getNegativeReturnUrl());

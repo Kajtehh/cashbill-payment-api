@@ -1,4 +1,4 @@
-package pl.kajteh.api;
+package pl.kajteh.payment;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

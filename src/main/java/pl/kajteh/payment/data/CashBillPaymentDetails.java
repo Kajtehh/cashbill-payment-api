@@ -1,4 +1,4 @@
-package pl.kajteh.api.data;
+package pl.kajteh.payment.data;
 
 import lombok.Builder;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package pl.kajteh.api.exception;
+package pl.kajteh.payment;
 
 import lombok.NonNull;
 

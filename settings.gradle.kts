@@ -1,2 +1,1 @@
-rootProject.name = "cashbill-payment-api"
-
+rootProject.name = "cashbill-payments"

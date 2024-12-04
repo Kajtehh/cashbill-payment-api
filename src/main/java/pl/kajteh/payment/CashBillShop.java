@@ -1,20 +1,22 @@
-package pl.kajteh.api;
+package pl.kajteh.payment;
 
 import com.google.gson.JsonObject;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import okhttp3.*;
 
-import pl.kajteh.api.data.CashBillGeneratedPayment;
-import pl.kajteh.api.data.CashBillPaymentDetails;
-import pl.kajteh.api.exception.CashBillPaymentException;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import pl.kajteh.payment.data.CashBillGeneratedPayment;
+import pl.kajteh.payment.data.CashBillPaymentDetails;
 
 import java.io.IOException;
 import java.util.Objects;
 
-import static pl.kajteh.api.CashBillPaymentVariables.GSON;
-import static pl.kajteh.api.CashBillPaymentVariables.MEDIA_TYPE;
+import static pl.kajteh.payment.CashBillPaymentVariables.GSON;
+import static pl.kajteh.payment.CashBillPaymentVariables.MEDIA_TYPE;
 
 @RequiredArgsConstructor
 public class CashBillShop {
