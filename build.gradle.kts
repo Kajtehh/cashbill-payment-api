@@ -6,12 +6,6 @@ plugins {
 group = "pl.kajteh"
 version = "1.0-SNAPSHOT"
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
-    }
-}
-
 repositories {
     mavenCentral()
 }
