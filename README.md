@@ -1,4 +1,4 @@
-# CashBill Payment API
+CashBill Payments API Java Library
 
 ## Setup:
 ```java
