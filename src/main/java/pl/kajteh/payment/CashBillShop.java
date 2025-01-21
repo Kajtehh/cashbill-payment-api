@@ -1,6 +1,7 @@
 package pl.kajteh.payment;
 
 import com.google.gson.JsonObject;
+import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -22,7 +23,7 @@ import static pl.kajteh.payment.CashBillPaymentVariables.MEDIA_TYPE;
 public class CashBillShop {
     protected final String shopId;
     protected final String secretKey;
-    @Setter protected boolean test = false;
+    @Getter @Setter private boolean test = false;
     @Setter private OkHttpClient client = new OkHttpClient();
 
     /**
@@ -72,7 +73,7 @@ public class CashBillShop {
      * @return A CashBillPaymentDetails object containing transaction information.
      * @throws CashBillPaymentException if there's an issue retrieving transaction information
      */
-    public CashBillPaymentDetails getTransactionInfo(@NonNull String orderId) throws CashBillPaymentException {
+    public CashBillPaymentDetails getPaymentDetails(@NonNull String orderId) throws CashBillPaymentException {
         try {
             final Request request = new Request.Builder()
                     .url(CashBillPaymentUtil.getTransactionInfoUrl(this, orderId))

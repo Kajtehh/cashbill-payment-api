@@ -11,7 +11,7 @@ import java.util.Map;
 public class CashBillPaymentUtil {
 
     public static String generatePaymentSignature(@NonNull CashBillPayment payment, @NonNull CashBillShop shop) {
-        StringBuilder sb = new StringBuilder();
+        final StringBuilder sb = new StringBuilder();
 
         appendNonNull(sb, payment.getTitle());
         appendNonNull(sb, payment.getAmount().value());
@@ -41,6 +41,7 @@ public class CashBillPaymentUtil {
 
         if (payment.getOptions() != null) {
             final StringBuilder mapBuilder = new StringBuilder();
+
             for (Map.Entry<String, String> entry : payment.getOptions().entrySet()) {
                 appendNonNull(mapBuilder, entry.getKey());
                 appendNonNull(mapBuilder, entry.getValue());
@@ -56,14 +57,14 @@ public class CashBillPaymentUtil {
     public static String getPaymentUrl(@NonNull CashBillShop shop) {
         return "https://pay.cashbill.pl/:ws/rest/payment/:shopId"
                 .replace(":shopId", shop.shopId)
-                .replace(":ws", shop.test ? "testws" : "ws");
+                .replace(":ws", shop.isTest() ? "testws" : "ws");
     }
 
     public static String getTransactionInfoUrl(@NonNull CashBillShop shop, @NonNull String orderId) {
         return "https://pay.cashbill.pl/:ws/rest/payment/:shopId/:orderId?sign=:sign"
                 .replace(":shopId", shop.shopId)
                 .replace(":orderId", orderId)
-                .replace(":ws", shop.test ? "testws" : "ws")
+                .replace(":ws", shop.isTest() ? "testws" : "ws")
                 .replace(":sign", DigestUtils.sha1Hex(orderId + shop.secretKey));
     }
 

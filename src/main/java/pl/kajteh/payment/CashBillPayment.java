@@ -8,7 +8,6 @@ import java.util.Map;
 
 @Getter
 @Setter
-@Builder
 @RequiredArgsConstructor
 public class CashBillPayment {
     @NonNull private final String title;

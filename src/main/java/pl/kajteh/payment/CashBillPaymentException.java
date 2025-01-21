@@ -2,7 +2,7 @@ package pl.kajteh.payment;
 
 import lombok.NonNull;
 
-public class CashBillPaymentException extends Exception{
+public class CashBillPaymentException extends Exception {
 
     public CashBillPaymentException(@NonNull String message) {
         super(message);
