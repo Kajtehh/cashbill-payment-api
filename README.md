@@ -1,4 +1,4 @@
-# CashBill Payment API
+# CashBill Payments API Java Library
 
 ## Setup:
 ```java
@@ -10,7 +10,7 @@ shop.setTest(true);               // Enables the test mode (default is false)
 shop.setClient(new OkHttpClient()); // Sets a custom OkHttpClient (default is new OkHttpClient())
 ```
 
-# Examples:
+## Examples:
 
 ## Create payment:
 ```java
