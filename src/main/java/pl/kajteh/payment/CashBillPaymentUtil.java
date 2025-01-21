@@ -14,8 +14,8 @@ public class CashBillPaymentUtil {
         final StringBuilder sb = new StringBuilder();
 
         appendNonNull(sb, payment.getTitle());
-        appendNonNull(sb, payment.getAmount().value());
-        appendNonNull(sb, payment.getAmount().currencyCode());
+        appendNonNull(sb, payment.getAmount().getValue());
+        appendNonNull(sb, payment.getAmount().getCurrencyCode());
         appendNonNull(sb, payment.getReturnUrl());
         appendNonNull(sb, payment.getDescription());
         appendNonNull(sb, payment.getNegativeReturnUrl());

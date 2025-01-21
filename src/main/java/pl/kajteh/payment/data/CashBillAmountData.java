@@ -1,3 +1,11 @@
 package pl.kajteh.payment.data;
 
-public record CashBillAmountData(double value, String currencyCode) {}
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+@Getter
+@RequiredArgsConstructor
+public class CashBillAmountData {
+    private final double value;
+    private final String currencyCode;
+}
