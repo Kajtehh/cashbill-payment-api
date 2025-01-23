@@ -1,16 +1,14 @@
-package pl.kajteh.payment;
+package pl.kajteh.payment.util;
 
-import lombok.NonNull;
-import lombok.experimental.UtilityClass;
 import org.apache.commons.codec.digest.DigestUtils;
+import pl.kajteh.payment.CashBillPayment;
 import pl.kajteh.payment.data.CashBillPersonalData;
 
 import java.util.Map;
 
-@UtilityClass
 public class CashBillPaymentUtil {
 
-    public static String generatePaymentSignature(@NonNull CashBillPayment payment, @NonNull CashBillShop shop) {
+    public static String generatePaymentSignature(CashBillPayment payment, String secretKey) {
         final StringBuilder sb = new StringBuilder();
 
         appendNonNull(sb, payment.getTitle());
@@ -49,23 +47,29 @@ public class CashBillPaymentUtil {
             appendNonNull(sb, mapBuilder.toString());
         }
 
-        sb.append(shop.secretKey);
+        sb.append(secretKey);
 
         return DigestUtils.sha1Hex(sb.toString());
     }
 
-    public static String getPaymentUrl(@NonNull CashBillShop shop) {
-        return "https://pay.cashbill.pl/:ws/rest/payment/:shopId"
-                .replace(":shopId", shop.shopId)
-                .replace(":ws", shop.isTest() ? "testws" : "ws");
+    public static String generatePaymentNotificationSignature(String cmd, String args, String secretKey) {
+        final String data = cmd + args + secretKey;
+
+        return DigestUtils.md5Hex(data.getBytes()).toLowerCase();
     }
 
-    public static String getTransactionInfoUrl(@NonNull CashBillShop shop, @NonNull String orderId) {
+    public static String getPaymentUrl(String shopId, boolean test) {
+        return "https://pay.cashbill.pl/:ws/rest/payment/:shopId"
+                .replace(":shopId", shopId)
+                .replace(":ws", test ? "testws" : "ws");
+    }
+
+    public static String getTransactionInfoUrl(String shopId, String secretKey, boolean test, String orderId) {
         return "https://pay.cashbill.pl/:ws/rest/payment/:shopId/:orderId?sign=:sign"
-                .replace(":shopId", shop.shopId)
+                .replace(":shopId", shopId)
                 .replace(":orderId", orderId)
-                .replace(":ws", shop.isTest() ? "testws" : "ws")
-                .replace(":sign", DigestUtils.sha1Hex(orderId + shop.secretKey));
+                .replace(":ws", test ? "testws" : "ws")
+                .replace(":sign", DigestUtils.sha1Hex(orderId + secretKey));
     }
 
     private static <T> void appendNonNull(StringBuilder sb, T value) {

@@ -1,14 +1,12 @@
 package pl.kajteh.payment;
 
-import lombok.NonNull;
-
 public class CashBillPaymentException extends Exception {
 
-    public CashBillPaymentException(@NonNull String message) {
+    public CashBillPaymentException(String message) {
         super(message);
     }
 
-    public CashBillPaymentException(@NonNull String message, @NonNull Throwable cause) {
+    public CashBillPaymentException(String message, Throwable cause) {
         super(message, cause);
     }
 }

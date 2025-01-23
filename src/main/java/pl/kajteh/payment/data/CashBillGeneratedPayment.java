@@ -1,11 +1,19 @@
 package pl.kajteh.payment.data;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-
-@Getter
-@RequiredArgsConstructor
 public class CashBillGeneratedPayment {
     private final String id;
     private final String redirectUrl;
+
+    public CashBillGeneratedPayment(String id, String redirectUrl) {
+        this.id = id;
+        this.redirectUrl = redirectUrl;
+    }
+
+    public String getId() {
+        return this.id;
+    }
+
+    public String getRedirectUrl() {
+        return this.redirectUrl;
+    }
 }
